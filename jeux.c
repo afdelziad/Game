@@ -1,99 +1,110 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-void main ()
+void main()
 {
-    int result , reponse , i , score = 0 , gagner , alt ;
+    int result, answer, score = 0, target, random_number;
 
     srand(time(NULL));
 
-    printf("{Bienvenue dans le jeux pierre feuille ciseau de Ziad Afdel}\n");
-    printf("combien de manches voulez vous gagner ? \n");
-    scanf("%d",&gagner);
+    printf("{Welcome to Ziad Afdel's Rock Paper Scissors Game}\n");
 
-    while ( score < gagner )
+    printf("How many points do you need to win? \n");
+    scanf("%d", &target);
+
+    while (score < target)
     {
-        alt = ( rand() % 91 );
+        random_number = rand() % 91;
 
         do
         {
-            printf("entrer : \n 1 = pierrre \n 2 = feuille \n 3 = ciseau \n");
-            scanf("%d",&reponse);
-        } while ( reponse != 1 && reponse != 2 && reponse != 3 );
+            printf("Enter your choice:\n");
+            printf("1 = Rock\n");
+            printf("2 = Paper\n");
+            printf("3 = Scissors\n");
+            scanf("%d", &answer);
 
-        switch ( reponse )
-            {
-            case 1 :
-                printf("pierre choisi \n");
-                break;
-            case 2 :
-                printf("feuille choisi \n");
-                break;
-            case 3 :
-                printf("ciseau choisi \n");
-                break;
-            default:
-                break;
-            }
-    
-    if ( alt <= 30 )
-    {
-        result = 1 ;
-        printf("j'ai choisi pierre \n");
+        } while (answer != 1 && answer != 2 && answer != 3);
+
+        switch (answer)
+        {
+        case 1:
+            printf("You chose Rock\n");
+            break;
+
+        case 2:
+            printf("You chose Paper\n");
+            break;
+
+        case 3:
+            printf("You chose Scissors\n");
+            break;
+
+        default:
+            break;
+        }
+
+        if (random_number <= 30)
+        {
+            result = 1;
+            printf("The computer chose Rock\n");
+        }
+        else if (random_number <= 60)
+        {
+            result = 2;
+            printf("The computer chose Paper\n");
+        }
+        else
+        {
+            result = 3;
+            printf("The computer chose Scissors\n");
+        }
+
+        if (result == 1 && answer == 2)
+        {
+            printf("You won!\n");
+            printf("+1\n");
+            score++;
+        }
+        else if (result == 1 && answer == 3)
+        {
+            printf("You lost!\n");
+            printf("-1\n");
+            score--;
+        }
+        else if (result == 2 && answer == 1)
+        {
+            printf("You lost!\n");
+            printf("-1\n");
+            score--;
+        }
+        else if (result == 2 && answer == 3)
+        {
+            printf("You won!\n");
+            printf("+1\n");
+            score++;
+        }
+        else if (result == 3 && answer == 1)
+        {
+            printf("You won!\n");
+            printf("+1\n");
+            score++;
+        }
+        else if (result == 3 && answer == 2)
+        {
+            printf("You lost!\n");
+            printf("-1\n");
+            score--;
+        }
+        else
+        {
+            printf("Draw!\n");
+        }
     }
-    else if ( alt <= 60 )
-    {
-        result = 2 ;
-        printf("j'ai choisi feuille \n");
-    }
-    else if ( alt <= 90 )
-    {
-        result = 3 ;
-        printf("j'ai choisi ciseau \n");
-    }
-    
-    if ( result == 1 && reponse == 2 )
-    {
-        printf("vous avez gagner \n");
-        printf("+1\n");
-     score ++;
-    }
-    else if ( result == 1 && reponse == 3 )
-    {
-        printf("vous avez echoue \n");
-        printf("-1\n");
-        score --;
-    }
-    else if ( result == 2 && reponse == 1 )
-    {
-        printf("vous avez echoue \n");
-        printf("-1\n");
-        score --;
-    }
-    else if ( result == 2 && reponse == 3 )
-    {
-        printf("vous avez gagner \n");
-        printf("+1\n");
-        score ++;
-    }
-    else if ( result == 3 && reponse == 1 )
-    {
-        printf("vous avez gagnez \n");
-        printf("+1\n");
-        score ++;
-    }
-    else if ( result == 3 && reponse == 2 )
-    {
-        printf("vous avez echoue \n");
-        printf("-1\n");
-        score --;
-    }
-    else
-    {
-    printf("egalite\n");
-    }
+
+    printf("Your final score is: %d\n", score);
 }
-    printf("votre score est :%d \n",score);
-}
+```
 
